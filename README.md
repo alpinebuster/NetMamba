@@ -79,6 +79,8 @@ CUDA_VISIBLE_DEVICES=0 python src/fine-tune.py \\
     --model net_mamba_classifier \\
     --no_amp
 
+
+# cicdarknet
 CUDA_VISIBLE_DEVICES=0 nohup python src/fine-tune.py \
     --blr 2e-3 \
     --epochs 120 \
@@ -107,6 +109,7 @@ CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
     --blr 2e-3 \
     --epochs 120 \
     --nb_classes 7 \
+    --batch_size 32 \
     --finetune ./pre-train.pth \
     --data_path ./dataset/cicdarknet/dataset_sampled_ratio1e-05 \
     --output_dir ./dataset/cicdarknet/output_ratio1e-05 \
@@ -114,6 +117,84 @@ CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
     --model net_mamba_classifier \
     --no_amp \
 > cicdarknet_ratio1e-05.log 2>&1 &
+
+
+# tcub
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/tcub/dataset_sampled \
+    --output_dir ./dataset/tcub/output_ratio1.0 \
+    --log_dir dataset/tcub/logs_ratio1.0 \
+    --model net_mamba_classifier \
+    --no_amp \
+> tcub_ratio1.0.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/tcub/dataset_sampled_ratio0.001 \
+    --output_dir ./dataset/tcub/output_ratio0.001 \
+    --log_dir dataset/tcub/logs_ratio0.001 \
+    --model net_mamba_classifier \
+    --no_amp \
+> tcub_ratio0.001.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --batch_size 16 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/tcub/dataset_sampled_ratio1e-05 \
+    --output_dir ./dataset/tcub/output_ratio1e-05 \
+    --log_dir dataset/tcub/logs_ratio1e-05 \
+    --model net_mamba_classifier \
+    --no_amp \
+> tcub_ratio1e-05.log 2>&1 &
+
+
+# safesurf2025
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/safesurf2025/dataset_sampled \
+    --output_dir ./dataset/safesurf2025/output_ratio1.0 \
+    --log_dir dataset/safesurf2025/logs_ratio1.0 \
+    --model net_mamba_classifier \
+    --no_amp \
+> safesurf2025_ratio1.0.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=0 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/safesurf2025/dataset_sampled_ratio0.001 \
+    --output_dir ./dataset/safesurf2025/output_ratio0.001 \
+    --log_dir dataset/safesurf2025/logs_ratio0.001 \
+    --model net_mamba_classifier \
+    --no_amp \
+> safesurf2025_ratio0.001.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --batch_size 32 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/safesurf2025/dataset_sampled_ratio1e-05 \
+    --output_dir ./dataset/safesurf2025/output_ratio1e-05 \
+    --log_dir dataset/safesurf2025/logs_ratio1e-05 \
+    --model net_mamba_classifier \
+    --no_amp \
+> safesurf2025_ratio1e-05.log 2>&1 &
 ```
 Note that you should replace variable in the `< >` format with your actual values.
 
