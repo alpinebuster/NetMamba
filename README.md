@@ -14,15 +14,21 @@ ICNP 2024 ([arXiv paper](https://arxiv.org/abs/2405.11449))
 
 ## Environment Setup
 - Create python environment
-    - `conda create -n NetMamba python=3.10.13`
-    - `conda activate NetMamba`
+    - `pyenv install 3.10.13`
+    - `pyenv virtualenv 3.10.13 netmamba`
+    - `pyenv activate netmamba`
 - Install PyTorch 2.1.1+cu121 (we conduct experiments on this version)
+    - `pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple`
     - `pip install torch==2.1.1 torchvision==0.16.1 --index-url https://download.pytorch.org/whl/cu121`
 - Install Mamba 1.1.1
     - `cd mamba-1p1p1`
-    - `pip install -e .`
+    - `export CUDA_HOME=/usr/local/cuda-12`
+    - `export PATH=$CUDA_HOME/bin:$PATH`
+    - `export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH`
+    - `pip install packaging wheel`
+    - `pip install --no-build-isolation -e .`
 - Install other dependent libraries
-    - `pip install -r requirements.txt`
+    - `pip install -r requirements.txt --no-build-isolation`
 
 ## Data Preparation
 ### Download our processed datasets
@@ -72,6 +78,42 @@ CUDA_VISIBLE_DEVICES=0 python src/fine-tune.py \\
     --log_dir <your-output-dir> \\
     --model net_mamba_classifier \\
     --no_amp
+
+CUDA_VISIBLE_DEVICES=0 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/cicdarknet/dataset_sampled \
+    --output_dir ./dataset/cicdarknet/output_ratio1.0 \
+    --log_dir dataset/cicdarknet/logs_ratio1.0 \
+    --model net_mamba_classifier \
+    --no_amp \
+> cicdarknet_ratio1.0.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=0 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/cicdarknet/dataset_sampled_ratio0.001 \
+    --output_dir ./dataset/cicdarknet/output_ratio0.001 \
+    --log_dir dataset/cicdarknet/logs_ratio0.001 \
+    --model net_mamba_classifier \
+    --no_amp \
+> cicdarknet_ratio0.001.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=1 nohup python src/fine-tune.py \
+    --blr 2e-3 \
+    --epochs 120 \
+    --nb_classes 7 \
+    --finetune ./pre-train.pth \
+    --data_path ./dataset/cicdarknet/dataset_sampled_ratio1e-05 \
+    --output_dir ./dataset/cicdarknet/output_ratio1e-05 \
+    --log_dir dataset/cicdarknet/logs_ratio1e-05 \
+    --model net_mamba_classifier \
+    --no_amp \
+> cicdarknet_ratio1e-05.log 2>&1 &
 ```
 Note that you should replace variable in the `< >` format with your actual values.
 
