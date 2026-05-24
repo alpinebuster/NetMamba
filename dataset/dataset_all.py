@@ -17,6 +17,7 @@ def sample_pcap(minimum=200, maximum=3000, input_dir="CICIoT2022/flows/1-Power",
     random.seed(0)
     os.makedirs(output_dir, exist_ok=True)
     sub_dirs = list(filter(lambda x: os.path.isdir(f"{input_dir}/{x}"), os.listdir(input_dir)))
+    # import pdb;pdb.set_trace()
     if if_cic:
         pcap_files = []
         for sub_dir in sub_dirs:
@@ -45,31 +46,67 @@ def sample_pcap(minimum=200, maximum=3000, input_dir="CICIoT2022/flows/1-Power",
                 subprocess.run(f"cp '{pcap_file}' '{dst_pcap_file}'", shell=True)
 
 def sample_all_pcap():
-    sample_pcap(input_dir="CICIoT2022/flows/1-Power/Audio", output_dir=f"CICIoT2022/flows_sampled/Audio",
-                    minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CICIoT2022/flows/1-Power/Cameras", output_dir=f"CICIoT2022/flows_sampled/Cameras",
-                    minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CICIoT2022/flows/1-Power/Home Automation", output_dir=f"CICIoT2022/flows_sampled/Home Automation",
-                    minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/1-Flood", output_dir=f"CICIoT2022/flows_sampled/Flood",
-                    minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Hydra", 
-                output_dir=f"CICIoT2022/flows_sampled/Hydra", minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Nmap", 
-                output_dir=f"CICIoT2022/flows_sampled/Nmap", minimum=200, maximum=6000, if_cic=True)
-    sample_pcap(input_dir="CrossPlatform/flows/android", output_dir=f"CrossPlatform-Android/flows_sampled",
-                    minimum=50, maximum=2000,)
-    sample_pcap(input_dir="CrossPlatform/flows/ios", output_dir=f"CrossPlatform-iOS/flows_sampled",
-                    minimum=50, maximum=2000,)
-    sample_pcap(input_dir="/mnt/ssd1/ISCXVPN2016/flows", output_dir=f"ISCXVPN2016/flows_sampled",
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Audio", output_dir=f"CICIoT2022/flows_sampled/Audio",
+    #                 minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Cameras", output_dir=f"CICIoT2022/flows_sampled/Cameras",
+    #                 minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Home Automation", output_dir=f"CICIoT2022/flows_sampled/Home Automation",
+    #                 minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/1-Flood", output_dir=f"CICIoT2022/flows_sampled/Flood",
+    #                 minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Hydra",
+    #             output_dir=f"CICIoT2022/flows_sampled/Hydra", minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Nmap",
+    #             output_dir=f"CICIoT2022/flows_sampled/Nmap", minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CrossPlatform/flows/android", output_dir=f"CrossPlatform-Android/flows_sampled",
+    #                 minimum=50, maximum=2000,)
+    # sample_pcap(input_dir="CrossPlatform/flows/ios", output_dir=f"CrossPlatform-iOS/flows_sampled",
+    #                 minimum=50, maximum=2000,)
+    # sample_pcap(input_dir="/mnt/ssd1/ISCXVPN2016/flows", output_dir=f"ISCXVPN2016/flows_sampled",
+    #                 minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw", output_dir=f"./flows_sampled/raw",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="/mnt/ssd1/USTC-TFC2016/flows", output_dir=f"USTC-TFC2016/flows_sampled",
-                    minimum=500, maximum=2000,)
-    sample_pcap(input_dir="/mnt/ssd1/ISCXTor2016/flows", output_dir=f"ISCXTor2016/flows_sampled",
-                    minimum=10, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/ss", output_dir=f"./flows_sampled/ss",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/trojan", output_dir=f"./flows_sampled/trojan",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/vless", output_dir=f"./flows_sampled/vless",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/vmess", output_dir=f"./flows_sampled/vmess",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss", output_dir=f"./flows_sampled/raw_ss",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan", output_dir=f"./flows_sampled/raw_ss_trojan",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan_vless", output_dir=f"./flows_sampled/raw_ss_trojan_vless",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled/raw_ss_trojan_vless_vmess",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw", output_dir=f"./flows_sampled/VPN_raw",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_ss", output_dir=f"./flows_sampled/VPN_ss",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_trojan", output_dir=f"./flows_sampled/VPN_trojan",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_vless", output_dir=f"./flows_sampled/VPN_vless",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_vmess", output_dir=f"./flows_sampled/VPN_vmess",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss", output_dir=f"./flows_sampled/VPN_raw_ss",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan", output_dir=f"./flows_sampled/VPN_raw_ss_trojan",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan_vless", output_dir=f"./flows_sampled/VPN_raw_ss_trojan_vless",
+                    minimum=500, maximum=4000,)
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled/VPN_raw_ss_trojan_vless_vmess",
+                    minimum=500, maximum=4000,)
+    # sample_pcap(input_dir="/mnt/ssd1/USTC-TFC2016/flows", output_dir=f"USTC-TFC2016/flows_sampled",
+    #                 minimum=500, maximum=2000,)
+    # sample_pcap(input_dir="/mnt/ssd1/ISCXTor2016/flows", output_dir=f"ISCXTor2016/flows_sampled",
+    #                 minimum=10, maximum=4000,)
 
 def pcap_to_array(pcap_dir, if_augment=False):
-    assert pcap_dir.split("/")[-1] == "flows_sampled"
+    assert pcap_dir.split("/")[0] == "flows_sampled"
     image_dir = pcap_dir.replace("flows_sampled", "array_sampled")
     flow_dir_names = os.listdir(pcap_dir)
     for flow_dir_name in flow_dir_names:
@@ -77,11 +114,13 @@ def pcap_to_array(pcap_dir, if_augment=False):
         pcap_filenames = os.listdir(f"{pcap_dir}/{flow_dir_name}")
         for pcap_filename in tqdm(pcap_filenames, desc=flow_dir_name):
             try:
+                import pdb;pdb.set_trace()
                 if not if_augment:
                     image_filename = f"{image_dir}/{flow_dir_name}/{pcap_filename[:-len('.pcap')]}.png"
                     stat_filename = image_filename.replace(".png", ".json")
                     res = read_5hp_list(f"{pcap_dir}/{flow_dir_name}/{pcap_filename}")[0]
                     flow_array = res.pop("data")
+                    import pdb;pdb.set_trace()
                     image = Image.fromarray(flow_array.reshape(40, 40).astype(np.uint8))
                     image.save(image_filename)
                     with open(stat_filename, "w") as f:
@@ -92,6 +131,7 @@ def pcap_to_array(pcap_dir, if_augment=False):
                         image_filename = f"{image_dir}/{flow_dir_name}/{pcap_filename[:-len('.pcap')]}-{i}.png"
                         stat_filename = image_filename.replace(".png", ".json")
                         flow_array = res.pop("data")
+                        import pdb;pdb.set_trace()
                         image = Image.fromarray(flow_array.reshape(40, 40).astype(np.uint8))
                         image.save(image_filename)
                         with open(stat_filename, "w") as f:
@@ -100,16 +140,34 @@ def pcap_to_array(pcap_dir, if_augment=False):
                 print(f"Error processing {pcap_filename}: {e}")
 
 def all_pcap_to_array():
-    pcap_to_array("CICIoT2022/flows_sampled", if_augment=False)
-    pcap_to_array("CrossPlatform-Android/flows_sampled", if_augment=True)
-    pcap_to_array("CrossPlatform-iOS/flows_sampled", if_augment=True)
-    pcap_to_array("ISCXVPN2016/flows_sampled", if_augment=False)
-    pcap_to_array("USTC-TFC2016/flows_sampled", if_augment=False)
-    pcap_to_array("ISCXTor2016/flows_sampled", if_augment=True)
+    # pcap_to_array("CICIoT2022/flows_sampled", if_augment=False)
+    # pcap_to_array("CrossPlatform-Android/flows_sampled", if_augment=True)
+    # pcap_to_array("CrossPlatform-iOS/flows_sampled", if_augment=True)
+    # pcap_to_array("ISCXVPN2016/flows_sampled", if_augment=False)
+    # pcap_to_array("USTC-TFC2016/flows_sampled", if_augment=False)
+    # pcap_to_array("ISCXTor2016/flows_sampled", if_augment=True)
+    pcap_to_array("flows_sampled/raw", if_augment=True)
+    pcap_to_array("flows_sampled/ss", if_augment=True)
+    pcap_to_array("flows_sampled/trojan", if_augment=True)
+    pcap_to_array("flows_sampled/vless", if_augment=True)
+    pcap_to_array("flows_sampled/vmess", if_augment=True)
+    pcap_to_array("flows_sampled/raw_ss", if_augment=True)
+    pcap_to_array("flows_sampled/raw_ss_trojan", if_augment=True)
+    pcap_to_array("flows_sampled/raw_ss_trojan_vless", if_augment=True)
+    pcap_to_array("flows_sampled/raw_ss_trojan_vless_vmess", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_raw", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_ss", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_trojan", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_vless", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_vmess", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_raw_ss", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_raw_ss_trojan", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_raw_ss_trojan_vless", if_augment=True)
+    pcap_to_array("flows_sampled/VPN_raw_ss_trojan_vless_vmess", if_augment=True)
 
 
 def split_dataset(input_dir, train_ratio=0.8, valid_ratio=0.1):
-    assert input_dir.split("/")[-1] == "array_sampled"
+    assert input_dir.split("/")[0] == "array_sampled"
     dir_name = "dataset_sampled"
     output_dir = input_dir.replace("array_sampled", dir_name)
     train_dir = f"{output_dir}/train"
@@ -140,15 +198,67 @@ def split_dataset(input_dir, train_ratio=0.8, valid_ratio=0.1):
     print(f"Train: {len(train_files)}, Valid: {len(valid_files)}, Test: {len(test_files)}")
 
 def split_all_datasets():
-    datasets = ["CICIoT2022", "CrossPlatform-Android", "CrossPlatform-iOS", "ISCXVPN2016", "USTC-TFC2016", "ISCXTor2016"]
+    datasets = [
+        # "CICIoT2022",
+        # "CrossPlatform-Android",
+        # "CrossPlatform-iOS",
+        # "ISCXVPN2016",
+        # "USTC-TFC2016",
+        # "ISCXTor2016",
+
+        "raw",
+        "ss",
+        "trojan",
+        "vless",
+        "vmess",
+        "raw_ss",
+        "raw_ss_trojan",
+        "raw_ss_trojan_vless",
+        "raw_ss_trojan_vless_vmess",
+        "VPN_raw",
+        "VPN_ss",
+        "VPN_trojan",
+        "VPN_vless",
+        "VPN_vmess",
+        "VPN_raw_ss",
+        "VPN_raw_ss_trojan",
+        "VPN_raw_ss_trojan_vless",
+        "VPN_raw_ss_trojan_vless_vmess",
+    ]
     for dataset in datasets:
-        split_dataset(f"{dataset}/array_sampled")
+        split_dataset(f"array_sampled/{dataset}")
 
 def merge_dataset():
     filenames = []
-    datasets = ["CICIoT2022", "CrossPlatform-Android", "CrossPlatform-iOS", "ISCXVPN2016", "USTC-TFC2016", "ISCXTor2016"]
+    datasets = [
+        # "CICIoT2022",
+        # "CrossPlatform-Android",
+        # "CrossPlatform-iOS",
+        # "ISCXVPN2016",
+        # "USTC-TFC2016",
+        # "ISCXTor2016",
+
+        "raw",
+        "ss",
+        "trojan",
+        "vless",
+        "vmess",
+        "raw_ss",
+        "raw_ss_trojan",
+        "raw_ss_trojan_vless",
+        "raw_ss_trojan_vless_vmess",
+        "VPN_raw",
+        "VPN_ss",
+        "VPN_trojan",
+        "VPN_vless",
+        "VPN_vmess",
+        "VPN_raw_ss",
+        "VPN_raw_ss_trojan",
+        "VPN_raw_ss_trojan_vless",
+        "VPN_raw_ss_trojan_vless_vmess",
+    ]
     for dataset in datasets:
-        filenames += find_files(f"{dataset}/array_sampled", extension=".png")
+        filenames += find_files(f"array_sampled/{dataset}", extension=".png")
     for filename in tqdm(filenames, desc="Merging"):
         filename_list = filename.split("/")
         label = filename_list[0] + "-" + filename_list[-2]
@@ -156,6 +266,7 @@ def merge_dataset():
         os.makedirs(f"pretrain_dataset/train/{label}", exist_ok=True)
         dst_filename = f"pretrain_dataset/train/{label}/{base_name}"
         subprocess.run(f"cp '{filename}' '{dst_filename}'", shell=True)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

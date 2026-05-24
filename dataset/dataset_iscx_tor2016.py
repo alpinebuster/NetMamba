@@ -3,7 +3,7 @@ from tqdm import tqdm
 import subprocess
 
 def split_pcap_files():
-    splitter = "/root/ShieldGPT/pcap_tool/splitter"
+    splitter = "./splitter"
     flow_packet_num_dict = {
         "BROWSING": 60,
         "CHAT": 100,
@@ -15,7 +15,7 @@ def split_pcap_files():
         "VOIP": 100,
     }
     for label in flow_packet_num_dict.keys():
-        filenames = list(filter(lambda x: x.endswith(".pcap") and x.startswith(label), 
+        filenames = list(filter(lambda x: x.endswith(".pcap") and x.startswith(label),
                         os.listdir("/mnt/ssd1/ISCXTor2016/Tor"))) # only consider Tor traffic, ignore NonTor
         filenames = [f"/mnt/ssd1/ISCXTor2016/Tor/{x}" for x in filenames]
         for filename in tqdm(filenames):
@@ -25,6 +25,7 @@ def split_pcap_files():
             with open(os.path.join("/mnt/ssd1/ISCXTor2016/flows", f"{flow_prefix}.log"), "w") as f:
                 subprocess.run(f"{splitter} -i '{filename}' -o '{dir_name}' -p {flow_prefix}- -f five_tuple -l {flow_packet_num_dict[label]}",
                             shell=True, stdout=f, stderr=subprocess.STDOUT)
+
 
 if __name__ == "__main__":
     split_pcap_files()
