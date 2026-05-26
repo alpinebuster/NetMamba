@@ -11,7 +11,7 @@ import argparse
 
 
 def sample_pcap(minimum=200, maximum=3000, input_dir="CICIoT2022/flows/1-Power",
-                output_dir="CICIoT2022/flows_sampled/1-Power", if_cic=False):
+                output_dir="CICIoT2022/flows_sampled-class_incremental/1-Power", if_cic=False):
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
     random.seed(0)
@@ -46,80 +46,80 @@ def sample_pcap(minimum=200, maximum=3000, input_dir="CICIoT2022/flows/1-Power",
                 subprocess.run(f"cp '{pcap_file}' '{dst_pcap_file}'", shell=True)
 
 def sample_all_pcap():
-    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Audio", output_dir=f"CICIoT2022/flows_sampled/Audio",
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Audio", output_dir=f"CICIoT2022/flows_sampled-class_incremental/Audio",
     #                 minimum=200, maximum=6000, if_cic=True)
-    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Cameras", output_dir=f"CICIoT2022/flows_sampled/Cameras",
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Cameras", output_dir=f"CICIoT2022/flows_sampled-class_incremental/Cameras",
     #                 minimum=200, maximum=6000, if_cic=True)
-    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Home Automation", output_dir=f"CICIoT2022/flows_sampled/Home Automation",
+    # sample_pcap(input_dir="CICIoT2022/flows/1-Power/Home Automation", output_dir=f"CICIoT2022/flows_sampled-class_incremental/Home Automation",
     #                 minimum=200, maximum=6000, if_cic=True)
-    # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/1-Flood", output_dir=f"CICIoT2022/flows_sampled/Flood",
+    # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/1-Flood", output_dir=f"CICIoT2022/flows_sampled-class_incremental/Flood",
     #                 minimum=200, maximum=6000, if_cic=True)
     # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Hydra",
-    #             output_dir=f"CICIoT2022/flows_sampled/Hydra", minimum=200, maximum=6000, if_cic=True)
+    #             output_dir=f"CICIoT2022/flows_sampled-class_incremental/Hydra", minimum=200, maximum=6000, if_cic=True)
     # sample_pcap(input_dir="CICIoT2022/flows/6-Attacks/2-RTSP Brute Force/Nmap",
-    #             output_dir=f"CICIoT2022/flows_sampled/Nmap", minimum=200, maximum=6000, if_cic=True)
-    # sample_pcap(input_dir="CrossPlatform/flows/android", output_dir=f"CrossPlatform-Android/flows_sampled",
+    #             output_dir=f"CICIoT2022/flows_sampled-class_incremental/Nmap", minimum=200, maximum=6000, if_cic=True)
+    # sample_pcap(input_dir="CrossPlatform/flows/android", output_dir=f"CrossPlatform-Android/flows_sampled-class_incremental",
     #                 minimum=50, maximum=2000,)
-    # sample_pcap(input_dir="CrossPlatform/flows/ios", output_dir=f"CrossPlatform-iOS/flows_sampled",
+    # sample_pcap(input_dir="CrossPlatform/flows/ios", output_dir=f"CrossPlatform-iOS/flows_sampled-class_incremental",
     #                 minimum=50, maximum=2000,)
-    # sample_pcap(input_dir="/mnt/ssd1/ISCXVPN2016/flows", output_dir=f"ISCXVPN2016/flows_sampled",
+    # sample_pcap(input_dir="/mnt/ssd1/ISCXVPN2016/flows", output_dir=f"ISCXVPN2016/flows_sampled-class_incremental",
     #                 minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw", output_dir=f"./flows_sampled/raw",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw", output_dir=f"./flows_sampled-class_incremental/raw",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/ss", output_dir=f"./flows_sampled/ss",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/ss", output_dir=f"./flows_sampled-class_incremental/ss",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/trojan", output_dir=f"./flows_sampled/trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/trojan", output_dir=f"./flows_sampled-class_incremental/trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/vless", output_dir=f"./flows_sampled/vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/vless", output_dir=f"./flows_sampled-class_incremental/vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/vmess", output_dir=f"./flows_sampled/vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/vmess", output_dir=f"./flows_sampled-class_incremental/vmess",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss", output_dir=f"./flows_sampled/raw_ss",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_ss", output_dir=f"./flows_sampled-class_incremental/raw_ss",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_trojan", output_dir=f"./flows_sampled/raw_trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_trojan", output_dir=f"./flows_sampled-class_incremental/raw_trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_vless", output_dir=f"./flows_sampled/raw_vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_vless", output_dir=f"./flows_sampled-class_incremental/raw_vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_vmess", output_dir=f"./flows_sampled/raw_vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_vmess", output_dir=f"./flows_sampled-class_incremental/raw_vmess",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan", output_dir=f"./flows_sampled/raw_ss_trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_ss_trojan", output_dir=f"./flows_sampled-class_incremental/raw_ss_trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan_vless", output_dir=f"./flows_sampled/raw_ss_trojan_vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_ss_trojan_vless", output_dir=f"./flows_sampled-class_incremental/raw_ss_trojan_vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled/raw_ss_trojan_vless_vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled-class_incremental/raw_ss_trojan_vless_vmess",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw", output_dir=f"./flows_sampled/VPN_raw",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw", output_dir=f"./flows_sampled-class_incremental/VPN_raw",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_ss", output_dir=f"./flows_sampled/VPN_ss",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_ss", output_dir=f"./flows_sampled-class_incremental/VPN_ss",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_trojan", output_dir=f"./flows_sampled/VPN_trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_trojan", output_dir=f"./flows_sampled-class_incremental/VPN_trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_vless", output_dir=f"./flows_sampled/VPN_vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_vless", output_dir=f"./flows_sampled-class_incremental/VPN_vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_vmess", output_dir=f"./flows_sampled/VPN_vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_vmess", output_dir=f"./flows_sampled-class_incremental/VPN_vmess",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss", output_dir=f"./flows_sampled/VPN_raw_ss",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_ss", output_dir=f"./flows_sampled-class_incremental/VPN_raw_ss",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_trojan", output_dir=f"./flows_sampled/VPN_raw_trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_trojan", output_dir=f"./flows_sampled-class_incremental/VPN_raw_trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_vless", output_dir=f"./flows_sampled/VPN_raw_vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_vless", output_dir=f"./flows_sampled-class_incremental/VPN_raw_vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_vmess", output_dir=f"./flows_sampled/VPN_raw_vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_vmess", output_dir=f"./flows_sampled-class_incremental/VPN_raw_vmess",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan", output_dir=f"./flows_sampled/VPN_raw_ss_trojan",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_ss_trojan", output_dir=f"./flows_sampled-class_incremental/VPN_raw_ss_trojan",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan_vless", output_dir=f"./flows_sampled/VPN_raw_ss_trojan_vless",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_ss_trojan_vless", output_dir=f"./flows_sampled-class_incremental/VPN_raw_ss_trojan_vless",
                     minimum=500, maximum=4000,)
-    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset/VPN_raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled/VPN_raw_ss_trojan_vless_vmess",
+    sample_pcap(input_dir="../../data/continual_flowcrawl/general_dataset-class_incremental/VPN_raw_ss_trojan_vless_vmess", output_dir=f"./flows_sampled-class_incremental/VPN_raw_ss_trojan_vless_vmess",
                     minimum=500, maximum=4000,)
-    # sample_pcap(input_dir="/mnt/ssd1/USTC-TFC2016/flows", output_dir=f"USTC-TFC2016/flows_sampled",
+    # sample_pcap(input_dir="/mnt/ssd1/USTC-TFC2016/flows", output_dir=f"USTC-TFC2016/flows_sampled-class_incremental",
     #                 minimum=500, maximum=2000,)
-    # sample_pcap(input_dir="/mnt/ssd1/ISCXTor2016/flows", output_dir=f"ISCXTor2016/flows_sampled",
+    # sample_pcap(input_dir="/mnt/ssd1/ISCXTor2016/flows", output_dir=f"ISCXTor2016/flows_sampled-class_incremental",
     #                 minimum=10, maximum=4000,)
 
 def pcap_to_array(pcap_dir, if_augment=False):
-    assert pcap_dir.split("/")[0] == "flows_sampled"
-    image_dir = pcap_dir.replace("flows_sampled", "array_sampled")
+    assert pcap_dir.split("/")[0] == "flows_sampled-class_incremental"
+    image_dir = pcap_dir.replace("flows_sampled-class_incremental", "array_sampled-class_incremental")
     flow_dir_names = os.listdir(pcap_dir)
     for flow_dir_name in flow_dir_names:
         os.makedirs(f"{image_dir}/{flow_dir_name}", exist_ok=True)
@@ -164,42 +164,42 @@ def pcap_to_array(pcap_dir, if_augment=False):
                 print(f"Error processing {pcap_filename}: {e}")
 
 def all_pcap_to_array():
-    # pcap_to_array("CICIoT2022/flows_sampled", if_augment=False)
-    # pcap_to_array("CrossPlatform-Android/flows_sampled", if_augment=True)
-    # pcap_to_array("CrossPlatform-iOS/flows_sampled", if_augment=True)
-    # pcap_to_array("ISCXVPN2016/flows_sampled", if_augment=False)
-    # pcap_to_array("USTC-TFC2016/flows_sampled", if_augment=False)
-    # pcap_to_array("ISCXTor2016/flows_sampled", if_augment=True)
-    pcap_to_array("flows_sampled/raw", if_augment=True)
-    pcap_to_array("flows_sampled/ss", if_augment=True)
-    pcap_to_array("flows_sampled/trojan", if_augment=True)
-    pcap_to_array("flows_sampled/vless", if_augment=True)
-    pcap_to_array("flows_sampled/vmess", if_augment=True)
-    pcap_to_array("flows_sampled/raw_ss", if_augment=True)
-    pcap_to_array("flows_sampled/raw_trojan", if_augment=True)
-    pcap_to_array("flows_sampled/raw_vless", if_augment=True)
-    pcap_to_array("flows_sampled/raw_vmess", if_augment=True)
-    pcap_to_array("flows_sampled/raw_ss_trojan", if_augment=True)
-    pcap_to_array("flows_sampled/raw_ss_trojan_vless", if_augment=True)
-    pcap_to_array("flows_sampled/raw_ss_trojan_vless_vmess", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_ss", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_trojan", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_vless", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_vmess", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_ss", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_trojan", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_vless", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_vmess", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_ss_trojan", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_ss_trojan_vless", if_augment=True)
-    pcap_to_array("flows_sampled/VPN_raw_ss_trojan_vless_vmess", if_augment=True)
+    # pcap_to_array("CICIoT2022/flows_sampled-class_incremental", if_augment=False)
+    # pcap_to_array("CrossPlatform-Android/flows_sampled-class_incremental", if_augment=True)
+    # pcap_to_array("CrossPlatform-iOS/flows_sampled-class_incremental", if_augment=True)
+    # pcap_to_array("ISCXVPN2016/flows_sampled-class_incremental", if_augment=False)
+    # pcap_to_array("USTC-TFC2016/flows_sampled-class_incremental", if_augment=False)
+    # pcap_to_array("ISCXTor2016/flows_sampled-class_incremental", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/ss", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/vmess", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_ss", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_vmess", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_ss_trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_ss_trojan_vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/raw_ss_trojan_vless_vmess", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_ss", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_vmess", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_ss", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_vmess", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_ss_trojan", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_ss_trojan_vless", if_augment=True)
+    pcap_to_array("flows_sampled-class_incremental/VPN_raw_ss_trojan_vless_vmess", if_augment=True)
 
 
 def split_dataset(input_dir, train_ratio=0.8, valid_ratio=0.1):
-    assert input_dir.split("/")[0] == "array_sampled"
-    dir_name = "dataset_sampled"
-    output_dir = input_dir.replace("array_sampled", dir_name)
+    assert input_dir.split("/")[0] == "array_sampled-class_incremental"
+    dir_name = "dataset_sampled-class_incremental"
+    output_dir = input_dir.replace("array_sampled-class_incremental", dir_name)
     train_dir = f"{output_dir}/train"
     valid_dir = f"{output_dir}/valid"
     test_dir = f"{output_dir}/test"
@@ -262,7 +262,7 @@ def split_all_datasets():
         "VPN_raw_ss_trojan_vless_vmess",
     ]
     for dataset in datasets:
-        split_dataset(f"array_sampled/{dataset}")
+        split_dataset(f"array_sampled-class_incremental/{dataset}")
 
 def merge_dataset():
     filenames = []
@@ -300,7 +300,7 @@ def merge_dataset():
         "VPN_raw_ss_trojan_vless_vmess",
     ]
     for dataset in datasets:
-        filenames += find_files(f"array_sampled/{dataset}", extension=".png")
+        filenames += find_files(f"array_sampled-class_incremental/{dataset}", extension=".png")
     for filename in tqdm(filenames, desc="Merging"):
         filename_list = filename.split("/")
         label = filename_list[0] + "-" + filename_list[-2]
