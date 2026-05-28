@@ -210,6 +210,7 @@ def split_dataset(input_dir, train_ratio=0.8, valid_ratio=0.1):
     random.seed(0)
     filenames = find_files(input_dir, extension=".png")
     np.random.shuffle(filenames)
+    filenames = filenames[:len(filenames)//20]
     train_size = int(len(filenames) * train_ratio)
     valid_size = int(len(filenames) * valid_ratio)
     train_files = filenames[:train_size]
@@ -311,6 +312,9 @@ def merge_dataset():
 
 
 if __name__ == "__main__":
+    """
+    python dataset_all-class_incremental.py --all
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--sample", action="store_true", help="Sample pcap files")
     parser.add_argument("--array", action="store_true", help="Convert pcap files to array")
