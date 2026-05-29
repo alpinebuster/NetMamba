@@ -313,7 +313,8 @@ def merge_dataset():
 
 if __name__ == "__main__":
     """
-    python dataset_all-class_incremental.py --all
+    nohup python dataset_all-class_incremental.py --sample --array --split \
+        > dataset_all-class_incremental-sample-array-split.log 2>&1 &
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("--sample", action="store_true", help="Sample pcap files")
