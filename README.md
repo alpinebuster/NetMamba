@@ -31,11 +31,11 @@ ICNP 2024 ([arXiv paper](https://arxiv.org/abs/2405.11449))
     - `pip install packaging wheel`
     - `pip install --no-build-isolation -e .`
 - Install other dependent libraries
-    - `pip install -r requirements.txt --no-build-isolation`
+    - `cd .. && pip install -r requirements.txt --no-build-isolation`
 
 ## Data Preparation
 ### Download our processed datasets
-For simplicity, you are welcome to download our processed datasets on which our experiments are conducted from [google drive](https://drive.google.com/drive/folders/1C1urXBhk09V7Z80Kk5JYuP7QeXiedUIl?usp=sharing). 
+For simplicity, you are welcome to download our processed datasets on which our experiments are conducted from [google drive](https://drive.google.com/drive/folders/1C1urXBhk09V7Z80Kk5JYuP7QeXiedUIl?usp=sharing).
 
 Each dataset is organized into the following structure:
 ```text
@@ -56,7 +56,7 @@ Each dataset is organized into the following structure:
 If you'd like to generate customized datasets, please refer to preprocessing scripts provided in [dataset](https://github.com/wangtz19/NetMamba/tree/main/dataset). Note that you need to change several file paths accordingly.
 
 ## Run NetMamba
-- Run pre-training: 
+- Run pre-training:
 ```shell
 CUDA_VISIBLE_DEVICES=0 python src/pre-train.py \\
     --batch_size 128 \\
