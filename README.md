@@ -31,7 +31,8 @@ ICNP 2024 ([arXiv paper](https://arxiv.org/abs/2405.11449))
     - `pip install packaging wheel`
     - `pip install --no-build-isolation -e .`
 - Install other dependent libraries
-    - `cd .. && pip install -r requirements.txt --no-build-isolation`
+    - `cd ..`
+    - `pip install -r requirements.txt --no-build-isolation`
 
 ## Data Preparation
 ### Download our processed datasets
