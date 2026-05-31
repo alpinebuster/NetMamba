@@ -18,7 +18,7 @@ def raw_packet_to_string(packet, remove_ip=True, keep_payload=True):
         ip.src, ip.dst = PAD_IP_ADDR, PAD_IP_ADDR
         ip.id = 0
         if hasattr(ip, "chksum"):
-        del ip.chksum
+            del ip.chksum
 
     if packet.haslayer("TCP"):
         tcp = packet["TCP"]
