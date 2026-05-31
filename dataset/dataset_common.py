@@ -16,6 +16,26 @@ def raw_packet_to_string(packet, remove_ip=True, keep_payload=True):
     if remove_ip:
         PAD_IP_ADDR = "0.0.0.0"
         ip.src, ip.dst = PAD_IP_ADDR, PAD_IP_ADDR
+        ip.id = 0
+        if hasattr(ip, "chksum"):
+        del ip.chksum
+
+    if packet.haslayer("TCP"):
+        tcp = packet["TCP"]
+        tcp.sport = 0
+        tcp.dport = 0
+        tcp.seq = 0
+        tcp.ack = 0
+        if hasattr(tcp, "chksum"):
+            del tcp.chksum
+
+    if packet.haslayer("UDP"):
+        udp = packet["UDP"]
+        udp.sport = 0
+        udp.dport = 0
+        if hasattr(udp, "chksum"):
+            del udp.chksum
+
     header = (binascii.hexlify(bytes(ip))).decode()
     if keep_payload:
         try:
@@ -62,5 +82,5 @@ def read_5hp_list(pcap_filename, if_augment=False, remove_ip=True, keep_payload=
             flow_array_list.append(string_to_hex_array(flow_string))
         return [{
             "data": flow_array,
-        } for flow_array in 
+        } for flow_array in
         zip(flow_array_list)]
