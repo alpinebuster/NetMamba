@@ -117,7 +117,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         # we use a per iteration (instead of per epoch) lr scheduler
         if data_iter_step % accum_iter == 0:
             lr_sched.adjust_learning_rate(optimizer, data_iter_step / len(data_loader) + epoch, args)
-        
+
         samples, targets = data
         samples = samples.to(device, non_blocking=True)
         targets = targets.to(device, non_blocking=True)
@@ -139,7 +139,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         if not math.isfinite(loss_value):
             print("Loss is {}, stopping training".format(loss_value))
             sys.exit(1)
-        
+
         if isinstance(loss_scaler, NativeScaler):
             loss /= accum_iter
             loss_scaler(loss, optimizer, clip_grad=max_norm,
@@ -207,7 +207,9 @@ def evaluate(data_loader, model, device, if_stat=False):
         pred_all.extend(pred[0].cpu())
         target_all.extend(target.cpu())
 
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        num_classes = output.shape[1]
+        topk = (1, min(5, num_classes))
+        acc1, acc5 = accuracy(output, target, topk=topk)
 
         batch_size = images.shape[0]
         metric_logger.update(loss=loss.item())
@@ -296,7 +298,7 @@ def evaluate_speed_test(data_loader, model, device, args):
             "max memory consumption (MB)": max_mem,
             "model memory consumption (MB)": model_mem
         })
-   
+
     with open(os.path.join(args.output_dir, "speed_test.json"), "w") as f:
         json.dump(res_list, f, indent=2)
 
